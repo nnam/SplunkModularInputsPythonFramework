@@ -5,7 +5,7 @@ Nicholas Nam
 
 '''
 
-import sys, logging, os, time, re
+import sys, logging, os, time, re, datetime
 import xml.dom.minidom, xml.sax.saxutils
 
 SPLUNK_HOME = os.environ.get('SPLUNK_HOME')
@@ -214,12 +214,13 @@ def do_run():
         http_header_properties = dict((k.strip(), v.strip()) for k, v in
               (item.split('=') for item in http_header_properties_str.split(delimiter)))
 
-    url_args={}
+
+    url_args = {}
     url_args['offset'] = 0
     url_args['limit'] = 500
     url_args['api-key'] = config.get('opendns_api_key')
     url_args['token'] = config.get('opendns_auth_token')
-    url_args_str=config.get('url_args')
+    url_args_str = config.get('url_args')
 
     if not url_args_str is None:
         add_url_args = dict((k.strip(), v.strip()) for k, v in
@@ -279,6 +280,9 @@ def do_run():
         while True:
 
             if 'params' in req_args:
+                end_time = datetime.datetime.now()
+                start_time = end_time - datetime.timedelta(0, polling_interval)
+                req_args['params']['filters'] = '{"start": %d,  "end": %d}' % (unix_time(start_time), unix_time(end_time))
                 req_args_params_current = dictParameterToStringFormat(req_args['params'])
             else:
                 req_args_params_current = ''
@@ -474,6 +478,11 @@ def get_validation_config():
                 val_data[name] = param.firstChild.data
 
     return val_data
+
+def unix_time(dt):
+    epoch = datetime.datetime.utcfromtimestamp(0)
+    delta = dt - epoch
+    return int(delta.total_seconds())
 
 if __name__ == '__main__':
 
