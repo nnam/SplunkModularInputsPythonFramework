@@ -1,8 +1,8 @@
-## Splunk XXX Modular Input vXX
+## Splunk OpenDNS Modular Input v0.0.1
 
 ## Overview
 
-This is a Splunk modular input add-on for XXX.
+This is a Splunk modular input add-on for OpenDNS.
 
 
 ## Dependencies
@@ -28,12 +28,12 @@ Any log entries/errors will get written to $SPLUNK_HOME/var/log/splunk/splunkd.l
 
 ## Contact
 
-This project was initiated by Your Name
+This project was initiated by Nicholas Nam
 <table>
 
 <tr>
 <td><em>Email</em></td>
-<td>foo@foo.com</td>
+<td>nicholasnam@gmail.com</td>
 </tr>
 
 </table>
