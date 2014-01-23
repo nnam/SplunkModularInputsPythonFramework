@@ -38,7 +38,7 @@
 					<options>
 						<opt value="networks" label="Networks" />
                         <opt value="reports/topdomains" label="Top Domains" />
-                        <opt value="reports/securitycategories" label="Security Events" />
+                        <opt value="reports/securitycategoryqueries" label="Security Events" />
 					</options>
 				</element>
 				
