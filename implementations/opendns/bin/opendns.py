@@ -280,7 +280,7 @@ def do_run():
         while True:
 
             if 'params' in req_args:
-                end_time = datetime.datetime.now()
+                end_time = datetime.datetime.utcnow()
                 start_time = end_time - datetime.timedelta(0, polling_interval)
                 req_args['params']['filters'] = '{"start": %d,  "end": %d}' % (unix_time(start_time), unix_time(end_time))
                 req_args_params_current = dictParameterToStringFormat(req_args['params'])
